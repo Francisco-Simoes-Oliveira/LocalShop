@@ -1,38 +1,126 @@
 import 'package:flutter/material.dart';
+import 'widgets/custom_button.dart';
+import 'widgets/custom_text_field.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ExampleScreen());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ExampleScreen extends StatelessWidget {
+  ExampleScreen({super.key});
 
-  // This widget is the root of your application.
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Exemplo de Widgets Customizados')),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              CustomTextField(
+                controller: emailController,
+                labelText: 'E-mail',
+                hintText: 'Digite seu e-mail',
+                keyboardType: TextInputType.emailAddress,
+                prefixIcon: Icons.email,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Informe o e-mail';
+                  }
+                  if (!value.contains('@')) {
+                    return 'Digite um e-mail válido';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  debugPrint('E-mail: $value');
+                },
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                controller: passwordController,
+                labelText: 'Senha',
+                hintText: 'Digite sua senha',
+                obscureText: true,
+                prefixIcon: Icons.lock,
+                suffixIcon: Icons.visibility_off,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Informe a senha';
+                  }
+                  if (value.length < 6) {
+                    return 'A senha deve ter pelo menos 6 caracteres';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 24),
+              CustomButton(
+                text: 'Entrar',
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Formulário válido!')),
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 16),
+              CustomButton(
+                onPressed: () {
+                  debugPrint('Botão com child pressionado');
+                },
+                color: Colors.green,
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.shopping_cart),
+                    SizedBox(width: 8),
+                    Text('Comprar'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
+  // const MyApp({super.key});
+
+  // // This widget is the root of your application.
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     title: 'Flutter Demo',
+  //     theme: ThemeData(
+  //       // This is the theme of your application.
+  //       //
+  //       // TRY THIS: Try running your application with "flutter run". You'll see
+  //       // the application has a purple toolbar. Then, without quitting the app,
+  //       // try changing the seedColor in the colorScheme below to Colors.green
+  //       // and then invoke "hot reload" (save your changes or press the "hot
+  //       // reload" button in a Flutter-supported IDE, or press "r" if you used
+  //       // the command line to start the app).
+  //       //
+  //       // Notice that the counter didn't reset back to zero; the application
+  //       // state is not lost during the reload. To reset the state, use hot
+  //       // restart instead.
+  //       //
+  //       // This works for code too, not just values: Most code changes can be
+  //       // tested with just a hot reload.
+  //       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+  //     ),
+  //     home: const MyHomePage(title: 'Flutter Demo Home Page'),
+  //   );
+  // }
 }
 
 class MyHomePage extends StatefulWidget {
