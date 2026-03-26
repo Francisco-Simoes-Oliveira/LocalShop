@@ -3,24 +3,13 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  /// Texto exibido no botão.
-  /// Será ignorado se [child] for informado.
   final String? text;
-
-  /// Widget customizado para o conteúdo do botão.
   final Widget? child;
-
-  /// Cor de fundo do botão.
-  /// Se não for informada, usa a cor primária do tema.
   final Color? color;
-
-  /// Cor do texto/conteúdo.
   final Color? textColor;
 
-  /// Espaçamento interno do botão.
   final EdgeInsetsGeometry? padding;
 
-  /// Raio das bordas.
   final double borderRadius;
 
   const CustomButton({

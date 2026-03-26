@@ -4,25 +4,18 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
 
-  /// Texto de sugestão.
   final String? hintText;
 
-  /// Para campos de senha.
   final bool obscureText;
 
-  /// Tipo de teclado.
   final TextInputType? keyboardType;
 
-  /// Validação para uso em Form.
   final FormFieldValidator<String>? validator;
 
-  /// Ícone à esquerda.
   final IconData? prefixIcon;
 
-  /// Ícone à direita.
   final IconData? suffixIcon;
 
-  /// Callback chamado ao alterar o texto.
   final ValueChanged<String>? onChanged;
 
   const CustomTextField({
