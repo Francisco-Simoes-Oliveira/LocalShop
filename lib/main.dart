@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:shoplocal/features/home/screens/homeScreen.dart';
 import 'package:shoplocal/routes/routes.dart';
 
 void main() {

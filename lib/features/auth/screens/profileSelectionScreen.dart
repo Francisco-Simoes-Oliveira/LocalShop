@@ -10,7 +10,7 @@ class Profileselectionscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomHeader(actions: [Icon(Icons.info_outline)]),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
           child: Column(
@@ -41,8 +41,14 @@ class Profileselectionscreen extends StatelessWidget {
                 title: 'Sou Colaborador',
                 description:
                     'Quero gerenciar meu catálogo, atender pedidos de clientes locais e expandir o alcance da minha loja física.',
-                icon: Icons.store,
-                routeName: Routes.login,
+                icon: Icons.store_outlined,
+                routeName: Routes.collaboratorType,
+              ),
+              const SizedBox(height: 50),
+              Text(
+                '© 2026 Trojan. Todos os direitos reservados.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
             ],
           ),
