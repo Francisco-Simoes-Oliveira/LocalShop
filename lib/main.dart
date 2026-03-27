@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
+
 import 'package:shoplocal/features/home/screens/homeScreen.dart';
+import 'package:shoplocal/routes/routes.dart';
 
 void main() {
-  runApp(Home());
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: Routes.profileSelection,
+      routes: Routes.routes,
+    );
+  }
 }
