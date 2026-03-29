@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoplocal/core/widgets/BottomNavBar.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/features/home/widgets/cards/PromoCard.dart';
 import 'package:shoplocal/features/home/widgets/cards/StoreCard.dart';
@@ -43,6 +44,8 @@ class Dashboard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const StoreCard(),
+
+            BottomNavBar(),
           ],
         ),
       ),
