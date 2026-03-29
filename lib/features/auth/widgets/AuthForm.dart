@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
-class Authform extends StatelessWidget {
-  const Authform({super.key});
+class Authform extends StatefulWidget {
+  final String? tela;
+
+  const Authform({super.key, this.tela});
+
+  @override
+  State<Authform> createState() => _AuthformState();
+}
+
+class _AuthformState extends State<Authform> {
+  bool isChecked = false;
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +40,150 @@ class Authform extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 24,
               children: [
-                buildEmailField(),
-                buildPasswordField(),
-                buildLoginButton(),
-                buildDivider(),
-                buildSocialButtons(),
+                switch (widget.tela) {
+                  'login' => Container(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 24,
+                      children: [
+                        buildField('Email'),
+                        buildField('Password', obscure: true),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(
+                              context,
+                            ).pushReplacementNamed('/forgot');
+                          },
+                          child: const Text(
+                            ' Esqueci minha senha',
+                            style: TextStyle(
+                              color: Color(0xFF004AC6),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: const Text('Login'),
+                        ),
+                        buildDivider('Ou continuar com'),
+                        buildSocialButtons(),
+                      ],
+                    ),
+                  ),
+                  'register' => Container(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 24,
+                      children: [
+                        buildField('Nome'),
+                        buildField('Email'),
+                        buildField('Password', obscure: true),
+                        Center(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Checkbox(
+                                value: isChecked,
+                                onChanged: (value) {
+                                  setState(() {
+                                    isChecked = value ?? false;
+                                  });
+                                },
+                              ),
+                              const SizedBox(width: 8),
+                              SizedBox(
+                                width: 220,
+                                child: RichText(
+                                  text: TextSpan(
+                                    text: 'Aceito os ',
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: 'termos de uso',
+                                        style: const TextStyle(
+                                          color: Color(0xFF004AC6),
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            // Ação padrão, ex:
+                                            Navigator.of(
+                                              context,
+                                            ).pushNamed('/termos');
+                                          },
+                                      ),
+                                      const TextSpan(text: ' e '),
+                                      TextSpan(
+                                        text: 'políticas de privacidade',
+                                        style: const TextStyle(
+                                          color: Color(0xFF004AC6),
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Navigator.of(
+                                              context,
+                                            ).pushNamed('/privacidade');
+                                          },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: const Text('Registrar'),
+                        ),
+
+                        buildDivider('Ou cadastre-se com'),
+                        buildSocialButtons(),
+                      ],
+                    ),
+                  ),
+                  'forgot' => Container(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 24,
+                      children: [
+                        buildField('Email'),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: const Text('Enviar link de recuperação'),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Lembrou sua senha? '),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(
+                                  context,
+                                ).pushReplacementNamed('/login');
+                              },
+                              child: const Text(
+                                'Fazer login',
+                                style: TextStyle(
+                                  color: Color(0xFF004AC6),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  _ => SizedBox.shrink(),
+                },
               ],
             ),
           ),
@@ -42,38 +192,39 @@ class Authform extends StatelessWidget {
     );
   }
 
-  Widget buildEmailField() {
+  Widget buildField(String tipo, {bool obscure = false}) {
+    final isPassword = tipo.toLowerCase() == 'password';
+
     return TextField(
+      obscureText: isPassword ? _obscurePassword : obscure,
       decoration: InputDecoration(
-        hintText: 'Email',
+        hintText: tipo,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        suffixIcon: isPassword
+            ? IconButton(
+                icon: Icon(
+                  _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscurePassword = !_obscurePassword;
+                  });
+                },
+              )
+            : null,
       ),
     );
   }
 
-  Widget buildPasswordField() {
-    return TextField(
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: 'Password',
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-    );
-  }
-
-  Widget buildLoginButton() {
-    return ElevatedButton(onPressed: () {}, child: const Text('Login'));
-  }
-
-  Widget buildDivider() {
-    return const Row(
+  Widget buildDivider(String texto) {
+    return Row(
       children: [
-        Expanded(child: Divider()),
+        const Expanded(child: Divider()),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text('Ou continuar com'),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(texto),
         ),
-        Expanded(child: Divider()),
+        const Expanded(child: Divider()),
       ],
     );
   }

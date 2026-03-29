@@ -37,7 +37,26 @@ class LoginScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 32),
-                Authform(),
+                Authform(tela: 'login'),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Não tem uma conta?'),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushReplacementNamed('/register');
+                      },
+                      child: const Text(
+                        ' Cadastre-se agora',
+                        style: TextStyle(
+                          color: Color(0xFF004AC6),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
