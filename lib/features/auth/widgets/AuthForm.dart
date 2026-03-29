@@ -63,7 +63,11 @@ class _AuthformState extends State<Authform> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(
+                              context,
+                            ).pushReplacementNamed('/dashboard');
+                          },
                           child: const Text('Login'),
                         ),
                         buildDivider('Ou continuar com'),
