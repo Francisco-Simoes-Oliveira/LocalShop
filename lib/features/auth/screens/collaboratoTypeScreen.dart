@@ -52,6 +52,7 @@ class Collaboratotypescreen extends StatelessWidget {
                 routeName: Routes.collaboratorType,
                 cor: Colors.grey,
               ),
+
               const SizedBox(height: 50),
               Text(
                 '© 2026 Trojan. Todos os direitos reservados.',

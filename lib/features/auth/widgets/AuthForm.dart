@@ -12,7 +12,7 @@ class Authform extends StatefulWidget {
 
 class _AuthformState extends State<Authform> {
   bool isChecked = false;
-  bool _obscurePassword = true;
+  bool obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +99,7 @@ class _AuthformState extends State<Authform> {
                               const SizedBox(width: 8),
                               SizedBox(
                                 width: 220,
+
                                 child: RichText(
                                   text: TextSpan(
                                     text: 'Aceito os ',
@@ -162,7 +163,8 @@ class _AuthformState extends State<Authform> {
                           onPressed: () {},
                           child: const Text('Enviar link de recuperação'),
                         ),
-                        const SizedBox(height: 8),
+                        Divider(),
+                        const SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -200,18 +202,18 @@ class _AuthformState extends State<Authform> {
     final isPassword = tipo.toLowerCase() == 'password';
 
     return TextField(
-      obscureText: isPassword ? _obscurePassword : obscure,
+      obscureText: isPassword ? obscurePassword : obscure,
       decoration: InputDecoration(
         hintText: tipo,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         suffixIcon: isPassword
             ? IconButton(
                 icon: Icon(
-                  _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                  obscurePassword ? Icons.visibility : Icons.visibility_off,
                 ),
                 onPressed: () {
                   setState(() {
-                    _obscurePassword = !_obscurePassword;
+                    obscurePassword = !obscurePassword;
                   });
                 },
               )

@@ -9,9 +9,7 @@ class BottomNavBar extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10),
-        ],
+        boxShadow: [BoxShadow(color: Colors.black, blurRadius: 10)],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

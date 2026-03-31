@@ -44,6 +44,7 @@ class Profileselectionscreen extends StatelessWidget {
                 icon: Icons.store_outlined,
                 routeName: Routes.collaboratorType,
               ),
+
               const SizedBox(height: 50),
               Text(
                 '© 2026 Trojan. Todos os direitos reservados.',
