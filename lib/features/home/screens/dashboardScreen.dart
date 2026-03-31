@@ -44,6 +44,11 @@ class Dashboard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const StoreCard(),
+            const StoreCard(
+              imagePath: 'assets/img/temp/roupas.png',
+              title: 'Urban Chic Boutique',
+              category: 'moda',
+            ),
 
             BottomNavBar(),
           ],

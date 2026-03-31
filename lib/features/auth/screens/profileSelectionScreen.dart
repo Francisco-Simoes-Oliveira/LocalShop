@@ -24,7 +24,7 @@ class Profileselectionscreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Escolha seu perfil para personalizarmos suaexperiência no comércio local.',
+                'Escolha seu perfil para personalizarmos sua experiência no comércio local.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16),
               ),
