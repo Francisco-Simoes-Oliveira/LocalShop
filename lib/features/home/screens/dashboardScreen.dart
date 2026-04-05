@@ -3,6 +3,7 @@ import 'package:shoplocal/core/widgets/BottomNavBar.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/features/home/widgets/cards/PromoCard.dart';
 import 'package:shoplocal/features/home/widgets/cards/StoreCard.dart';
+import 'package:shoplocal/routes/app_routes.dart';
 import '../widgets/SearchBar.dart';
 import '../widgets/CategoryCarousel.dart';
 
@@ -15,7 +16,9 @@ class Dashboard extends StatelessWidget {
       appBar: const CustomHeader(
         actions: [Icon(Icons.shopping_cart_outlined, color: Color(0xFF2563EB))],
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(
+        currentRoute: AppRoutes.dashboard,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -40,7 +43,7 @@ class Dashboard extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Ver todas as categorias')),
                 );
-                Navigator.pushNamed(context, '/categories');
+                Navigator.pushNamed(context, AppRoutes.categories);
               },
             ),
             const SizedBox(height: 16),

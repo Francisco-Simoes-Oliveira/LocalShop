@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/BottomNavBar.dart';
+import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/core/widgets/section_header_action.dart';
 import 'package:shoplocal/features/store/widgets/product_item_tile.dart';
+import 'package:shoplocal/routes/app_routes.dart';
 
 class StoreProductsScreen extends StatelessWidget {
   const StoreProductsScreen({super.key});
@@ -32,23 +34,26 @@ class StoreProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
+      appBar: CustomHeader(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF0F172A)),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF2563EB)),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'LocalShop',
-          style: TextStyle(
-            color: Color(0xFF0F172A),
-            fontWeight: FontWeight.w700,
+        title: 'LocalShop',
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, AppRoutes.cart),
+            icon: const Icon(
+              Icons.shopping_cart_outlined,
+              color: Color(0xFF2563EB),
+            ),
           ),
-        ),
+        ],
       ),
       backgroundColor: const Color(0xFFF8FAFC),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(
+        currentRoute: AppRoutes.partnerStores,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
@@ -153,6 +158,8 @@ class StoreProductsScreen extends StatelessWidget {
                   description: product.description,
                   price: product.price,
                   imagePath: product.imagePath,
+                  onTap: () =>
+                      Navigator.pushNamed(context, AppRoutes.productDetail),
                   onAdd: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

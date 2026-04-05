@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/BottomNavBar.dart';
+import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/core/widgets/section_header_action.dart';
 import 'package:shoplocal/features/home/widgets/category_masonry_card.dart';
+import 'package:shoplocal/routes/app_routes.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -33,19 +35,13 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: const Text(
-          'LocalShop',
-          style: TextStyle(
-            color: Color(0xFF0F172A),
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+      appBar: const CustomHeader(
+        actions: [Icon(Icons.shopping_cart_outlined, color: Color(0xFF2563EB))],
       ),
       backgroundColor: const Color(0xFFF8FAFC),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(
+        currentRoute: AppRoutes.categories,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
@@ -124,7 +120,7 @@ class CategoriesScreen extends StatelessWidget {
                     final store = _nearbyStores[index];
                     return InkWell(
                       onTap: () =>
-                          Navigator.pushNamed(context, '/store-products'),
+                          Navigator.pushNamed(context, AppRoutes.storeProducts),
                       borderRadius: BorderRadius.circular(14),
                       child: Container(
                         width: 220,
