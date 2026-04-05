@@ -3,8 +3,8 @@ import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/features/auth/widgets/UserRoleSelectionCard.dart';
 import 'package:shoplocal/routes/routes.dart';
 
-class Collaboratotypescreen extends StatelessWidget {
-  const Collaboratotypescreen({super.key});
+class CollaboratorTypeScreen extends StatelessWidget {
+  const CollaboratorTypeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

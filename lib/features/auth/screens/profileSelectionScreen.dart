@@ -3,8 +3,8 @@ import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/features/auth/widgets/UserRoleSelectionCard.dart';
 import 'package:shoplocal/routes/routes.dart';
 
-class Profileselectionscreen extends StatelessWidget {
-  const Profileselectionscreen({super.key});
+class ProfileSelectionScreen extends StatelessWidget {
+  const ProfileSelectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/features/auth/widgets/AuthForm.dart';
 
-class Registerscreen extends StatelessWidget {
-  const Registerscreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
