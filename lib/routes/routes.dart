@@ -6,6 +6,7 @@ import 'package:shoplocal/features/auth/screens/registerScreen.dart';
 import 'package:shoplocal/features/auth/screens/forgotPasswordScreen.dart';
 import 'package:shoplocal/features/home/screens/categoriesScreen.dart';
 import 'package:shoplocal/features/home/screens/dashboardScreen.dart';
+import 'package:shoplocal/features/store/screens/StoreProductsScreen.dart';
 
 class Routes {
   static String profileSelection = '/';
@@ -15,6 +16,7 @@ class Routes {
   static String forgotPassword = '/forgot';
   static String dashboard = '/dashboard';
   static String categories = '/categories';
+  static String storeProducts = '/store-products';
 
   static Map<String, WidgetBuilder> get routes => {
     profileSelection: (context) => const Profileselectionscreen(),
@@ -25,5 +27,6 @@ class Routes {
 
     dashboard: (context) => const Dashboard(),
     categories: (context) => const CategoriesScreen(),
+    storeProducts: (context) => const StoreProductsScreen(),
   };
 }

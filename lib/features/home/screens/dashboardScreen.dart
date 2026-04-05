@@ -15,6 +15,7 @@ class Dashboard extends StatelessWidget {
       appBar: const CustomHeader(
         actions: [Icon(Icons.shopping_cart_outlined, color: Color(0xFF2563EB))],
       ),
+      bottomNavigationBar: const BottomNavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -49,8 +50,7 @@ class Dashboard extends StatelessWidget {
               title: 'Urban Chic Boutique',
               category: 'moda',
             ),
-
-            BottomNavBar(),
+            const SizedBox(height: 8),
           ],
         ),
       ),
