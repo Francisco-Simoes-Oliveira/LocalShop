@@ -8,7 +8,7 @@
       "name": "LocalShop",
       "request": "launch",
       "type": "dart",
-      "args": ["-d", "chrome"]
+      // "args": ["-d", "chrome"]
     },
     {
       "name": "LocalShop (profile mode)",

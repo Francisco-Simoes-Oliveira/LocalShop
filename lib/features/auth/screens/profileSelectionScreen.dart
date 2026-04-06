@@ -3,8 +3,8 @@ import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/features/auth/widgets/UserRoleSelectionCard.dart';
 import 'package:shoplocal/routes/routes.dart';
 
-class Profileselectionscreen extends StatelessWidget {
-  const Profileselectionscreen({super.key});
+class ProfileSelectionScreen extends StatelessWidget {
+  const ProfileSelectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class Profileselectionscreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Escolha seu perfil para personalizarmos suaexperiência no comércio local.',
+                'Escolha seu perfil para personalizarmos sua experiência no comércio local.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16),
               ),
@@ -44,6 +44,7 @@ class Profileselectionscreen extends StatelessWidget {
                 icon: Icons.store_outlined,
                 routeName: Routes.collaboratorType,
               ),
+
               const SizedBox(height: 50),
               Text(
                 '© 2026 Trojan. Todos os direitos reservados.',

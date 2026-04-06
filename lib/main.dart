@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:shoplocal/routes/routes.dart';
+import 'package:shoplocal/routes/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.profileSelection,
-      routes: Routes.routes,
+      initialRoute: AppRoutes.profileSelection,
+      routes: AppRoutes.routes,
     );
   }
 }
