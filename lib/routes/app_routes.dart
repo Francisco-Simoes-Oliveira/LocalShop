@@ -9,7 +9,7 @@ import 'package:shoplocal/features/home/screens/categoriesScreen.dart';
 import 'package:shoplocal/features/home/screens/dashboardScreen.dart';
 import 'package:shoplocal/features/product/screens/product_detail_screen.dart';
 import 'package:shoplocal/features/profile/screens/profile_screen.dart';
-import 'package:shoplocal/features/store/screens/partner_stores_screen.dart';
+import 'package:shoplocal/features/store/screens/partnerStoresScreen.dart';
 import 'package:shoplocal/features/store/screens/StoreProductsScreen.dart';
 
 class AppRoutes {

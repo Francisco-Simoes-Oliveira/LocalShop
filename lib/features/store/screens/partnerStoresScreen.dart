@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/BottomNavBar.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
-import 'package:shoplocal/features/store/widgets/store_card.dart';
-import 'package:shoplocal/features/store/widgets/store_filter_chip.dart';
+import 'package:shoplocal/features/store/widgets/storeCard.dart';
+import 'package:shoplocal/features/store/widgets/storeFilterChip.dart';
 import 'package:shoplocal/routes/app_routes.dart';
 
 class PartnerStoresScreen extends StatefulWidget {
@@ -21,8 +21,8 @@ class _PartnerStoresScreenState extends State<PartnerStoresScreen> {
     'Entrega gratis',
   ];
 
-  static const _stores = [
-    _StoreData(
+  static const stores = [
+    StoreData(
       imagePath: 'assets/img/temp/padaria.png',
       name: 'Padaria Artesanal Villa',
       category: 'Padaria • Cafes',
@@ -30,7 +30,7 @@ class _PartnerStoresScreenState extends State<PartnerStoresScreen> {
       deliveryFee: 'Frete R\$ 4,99',
       rating: '4.9',
     ),
-    _StoreData(
+    StoreData(
       imagePath: 'assets/img/temp/padaria.png',
       name: 'Mercado Central Fresh',
       category: 'Mercado',
@@ -38,7 +38,7 @@ class _PartnerStoresScreenState extends State<PartnerStoresScreen> {
       deliveryFee: 'Entrega gratis',
       rating: '4.8',
     ),
-    _StoreData(
+    StoreData(
       imagePath: 'assets/img/temp/roupas.png',
       name: 'Floricultura Aroma & Cor',
       category: 'Presentes • Decoracao',
@@ -46,7 +46,7 @@ class _PartnerStoresScreenState extends State<PartnerStoresScreen> {
       deliveryFee: 'Frete R\$ 7,99',
       rating: '4.7',
     ),
-    _StoreData(
+    StoreData(
       imagePath: 'assets/img/temp/padaria.png',
       name: 'Cafe do Ponto Local',
       category: 'Cafe e Lanches',
@@ -108,10 +108,10 @@ class _PartnerStoresScreenState extends State<PartnerStoresScreen> {
               const SizedBox(height: 14),
               Expanded(
                 child: ListView.separated(
-                  itemCount: _stores.length,
+                  itemCount: stores.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 10),
                   itemBuilder: (context, index) {
-                    final store = _stores[index];
+                    final store = stores[index];
                     return StoreCard(
                       imagePath: store.imagePath,
                       name: store.name,
@@ -133,8 +133,8 @@ class _PartnerStoresScreenState extends State<PartnerStoresScreen> {
   }
 }
 
-class _StoreData {
-  const _StoreData({
+class StoreData {
+  const StoreData({
     required this.imagePath,
     required this.name,
     required this.category,

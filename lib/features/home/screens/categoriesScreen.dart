@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/BottomNavBar.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
-import 'package:shoplocal/core/widgets/section_header_action.dart';
-import 'package:shoplocal/features/home/widgets/category_masonry_card.dart';
+import 'package:shoplocal/core/widgets/sectionHeaderAction.dart';
+import 'package:shoplocal/features/home/widgets/cards/CategoryMasonryCard.dart';
 import 'package:shoplocal/routes/app_routes.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
-  static const _categories = [
-    _CategoryData('Alimentacao', 'assets/img/temp/padaria.png', 160),
-    _CategoryData('Roupas', 'assets/img/temp/roupas.png', 120),
-    _CategoryData('Eletronicos', 'assets/img/temp/roupas.png', 180),
-    _CategoryData('Farmacia', 'assets/img/temp/padaria.png', 120),
-    _CategoryData('Pet Shop', 'assets/img/temp/roupas.png', 140),
-    _CategoryData('Decoracao', 'assets/img/temp/padaria.png', 160),
+  static const categories = [
+    CategoryData('Alimentacao', 'assets/img/temp/padaria.png', 160),
+    CategoryData('Roupas', 'assets/img/temp/roupas.png', 120),
+    CategoryData('Eletronicos', 'assets/img/temp/roupas.png', 180),
+    CategoryData('Farmacia', 'assets/img/temp/padaria.png', 120),
+    CategoryData('Pet Shop', 'assets/img/temp/roupas.png', 140),
+    CategoryData('Decoracao', 'assets/img/temp/padaria.png', 160),
   ];
 
   static const _nearbyStores = [
@@ -92,7 +92,7 @@ class CategoriesScreen extends StatelessWidget {
                   return Wrap(
                     spacing: spacing,
                     runSpacing: spacing,
-                    children: _categories
+                    children: categories
                         .map(
                           (category) => SizedBox(
                             width: cardWidth,
@@ -182,8 +182,8 @@ class CategoriesScreen extends StatelessWidget {
   }
 }
 
-class _CategoryData {
-  const _CategoryData(this.label, this.imagePath, this.height);
+class CategoryData {
+  const CategoryData(this.label, this.imagePath, this.height);
 
   final String label;
   final String imagePath;

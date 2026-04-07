@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/BottomNavBar.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
-import 'package:shoplocal/core/widgets/section_header_action.dart';
-import 'package:shoplocal/features/store/widgets/product_item_tile.dart';
+import 'package:shoplocal/core/widgets/sectionHeaderAction.dart';
+import 'package:shoplocal/features/store/widgets/productItemTile.dart';
 import 'package:shoplocal/routes/app_routes.dart';
 
 class StoreProductsScreen extends StatelessWidget {

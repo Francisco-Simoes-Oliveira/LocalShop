@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/features/auth/widgets/UserRoleSelectionCard.dart';
-import 'package:shoplocal/routes/routes.dart';
+import 'package:shoplocal/routes/app_routes.dart';
 
 class ProfileSelectionScreen extends StatelessWidget {
   const ProfileSelectionScreen({super.key});
@@ -34,7 +34,7 @@ class ProfileSelectionScreen extends StatelessWidget {
                 description:
                     'Quero descobrir lojas próximas,aproveitar promoções e comprar produtos exclusivos na minha região.',
                 icon: Icons.shopping_cart,
-                routeName: Routes.login,
+                routeName: AppRoutes.login,
               ),
               const SizedBox(height: 16),
               Userroleselectioncard(
@@ -42,7 +42,7 @@ class ProfileSelectionScreen extends StatelessWidget {
                 description:
                     'Quero gerenciar meu catálogo, atender pedidos de clientes locais e expandir o alcance da minha loja física.',
                 icon: Icons.store_outlined,
-                routeName: Routes.collaboratorType,
+                routeName: AppRoutes.collaboratorType,
               ),
 
               const SizedBox(height: 50),

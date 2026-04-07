@@ -6,7 +6,7 @@ class BottomNavBar extends StatelessWidget {
 
   final String currentRoute;
 
-  int _resolveIndex() {
+  int resolveIndex() {
     switch (currentRoute) {
       case AppRoutes.dashboard:
         return 0;
@@ -22,7 +22,7 @@ class BottomNavBar extends StatelessWidget {
     }
   }
 
-  void _handleTap(BuildContext context, int index) {
+  void handleTap(BuildContext context, int index) {
     final destinations = [
       AppRoutes.dashboard,
       AppRoutes.categories,
@@ -38,7 +38,7 @@ class BottomNavBar extends StatelessWidget {
     Navigator.pushReplacementNamed(context, selectedRoute);
   }
 
-  BottomNavigationBarItem _buildItem({
+  BottomNavigationBarItem buildItem({
     required IconData icon,
     required String label,
   }) {
@@ -71,8 +71,8 @@ class BottomNavBar extends StatelessWidget {
       ),
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: _resolveIndex(),
-        onTap: (index) => _handleTap(context, index),
+        currentIndex: resolveIndex(),
+        onTap: (index) => handleTap(context, index),
         selectedItemColor: const Color(0xFF2563EB),
         unselectedItemColor: const Color(0xFF94A3B8),
         selectedFontSize: 11,
@@ -81,10 +81,10 @@ class BottomNavBar extends StatelessWidget {
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w700),
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
         items: [
-          _buildItem(icon: Icons.home_rounded, label: 'Início'),
-          _buildItem(icon: Icons.category_rounded, label: 'Categorias'),
-          _buildItem(icon: Icons.storefront_rounded, label: 'Lojas'),
-          _buildItem(icon: Icons.person_outline_rounded, label: 'Perfil'),
+          buildItem(icon: Icons.home_rounded, label: 'Início'),
+          buildItem(icon: Icons.category_rounded, label: 'Categorias'),
+          buildItem(icon: Icons.storefront_rounded, label: 'Lojas'),
+          buildItem(icon: Icons.person_outline_rounded, label: 'Perfil'),
         ],
       ),
     );

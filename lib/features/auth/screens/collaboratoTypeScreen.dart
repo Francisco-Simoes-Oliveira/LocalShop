@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/features/auth/widgets/UserRoleSelectionCard.dart';
-import 'package:shoplocal/routes/routes.dart';
+import 'package:shoplocal/routes/app_routes.dart';
 
 class CollaboratorTypeScreen extends StatelessWidget {
   const CollaboratorTypeScreen({super.key});
@@ -41,7 +41,7 @@ class CollaboratorTypeScreen extends StatelessWidget {
                 description:
                     'Gerencie inventário, processe pedidos e acompanhe o crescimento do seu negócio local.',
                 icon: Icons.store,
-                routeName: Routes.login,
+                routeName: AppRoutes.login,
               ),
               const SizedBox(height: 16),
               Userroleselectioncard(
@@ -49,7 +49,7 @@ class CollaboratorTypeScreen extends StatelessWidget {
                 description:
                     'Faça entregas rápidas na sua região e tenha flexibilidade de horários.',
                 icon: Icons.sports_motorsports,
-                routeName: Routes.collaboratorType,
+                routeName: AppRoutes.collaboratorType,
                 cor: Colors.grey,
               ),
 
