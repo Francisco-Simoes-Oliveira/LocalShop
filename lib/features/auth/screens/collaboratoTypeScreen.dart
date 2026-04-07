@@ -17,6 +17,7 @@ class CollaboratorTypeScreen extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(

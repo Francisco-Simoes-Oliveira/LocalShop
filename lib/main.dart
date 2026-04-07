@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:shoplocal/routes/app_routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
   runApp(const MyApp());
 }
 

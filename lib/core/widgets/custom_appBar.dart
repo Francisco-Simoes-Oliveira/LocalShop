@@ -16,8 +16,9 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
       width: double.infinity,
       height: 64,
       padding: const EdgeInsets.symmetric(horizontal: 16),
+
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.80),
+        color: Colors.white,
         boxShadow: const [
           BoxShadow(
             color: Color(0x0C000000),
@@ -31,7 +32,11 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
           /// 🔹 LEFT (leading)
           leading ??
               Image.asset(
-                'assets/img/Logo_LocalShop_icon.png',
+                'assets/img/Logo_localShop_icon.png',
+                errorBuilder: (context, error, stackTrace) {
+                  return Text('ERRO: $error');
+                },
+
                 width: 40,
                 height: 40,
               ),
