@@ -4,10 +4,11 @@ import 'package:shoplocal/features/auth/screens/forgotPasswordScreen.dart';
 import 'package:shoplocal/features/auth/screens/loginScreen.dart';
 import 'package:shoplocal/features/auth/screens/profileSelectionScreen.dart';
 import 'package:shoplocal/features/auth/screens/registerScreen.dart';
-import 'package:shoplocal/features/cart/screens/cart_screen.dart';
+import 'package:shoplocal/features/cart/screens/cartScreen.dart';
 import 'package:shoplocal/features/home/screens/categoriesScreen.dart';
+import 'package:shoplocal/features/product/models/product_model.dart';
 import 'package:shoplocal/features/home/screens/dashboardScreen.dart';
-import 'package:shoplocal/features/product/screens/product_detail_screen.dart';
+import 'package:shoplocal/features/product/screens/productDetailScreen.dart';
 import 'package:shoplocal/features/profile/screens/profile_screen.dart';
 import 'package:shoplocal/features/store/screens/partnerStoresScreen.dart';
 import 'package:shoplocal/features/store/screens/StoreProductsScreen.dart';
@@ -36,7 +37,11 @@ class AppRoutes {
     categories: (context) => const CategoriesScreen(),
     partnerStores: (context) => const PartnerStoresScreen(),
     storeProducts: (context) => const StoreProductsScreen(),
-    productDetail: (context) => const ProductDetailScreen(),
+    productDetail: (context) {
+      final args = ModalRoute.of(context)?.settings.arguments;
+      final product = args is Product ? args : ProductMocks.decorLamp;
+      return ProductDetailScreen(product: product);
+    },
     cart: (context) => const CartScreen(),
     profile: (context) => const ProfileScreen(),
   };

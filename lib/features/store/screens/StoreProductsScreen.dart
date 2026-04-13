@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoplocal/core/widgets/BottomNavBar.dart';
 import 'package:shoplocal/core/widgets/custom_appBar.dart';
 import 'package:shoplocal/core/widgets/sectionHeaderAction.dart';
+import 'package:shoplocal/features/product/models/product_model.dart';
 import 'package:shoplocal/features/store/widgets/productItemTile.dart';
 import 'package:shoplocal/routes/app_routes.dart';
 
@@ -11,25 +12,58 @@ class StoreProductsScreen extends StatelessWidget {
   static const _tabs = ['Pizzas', 'Bebidas', 'Sobremesas'];
 
   static const _products = [
-    _ProductData(
-      name: 'Pizza Margherita',
-      description: 'Molho de tomate, mussarela e manjericao fresco.',
-      price: 'R\$ 39,90',
-      imagePath: 'assets/img/temp/padaria.png',
-    ),
-    _ProductData(
+    ProductMocks.pizza,
+    Product(
+      id: 'food-pizza-calabresa',
       name: 'Pizza Calabresa',
       description: 'Calabresa fatiada, cebola roxa e oregano.',
-      price: 'R\$ 44,90',
-      imagePath: 'assets/img/temp/roupas.png',
+      price: 44.90,
+      image: 'assets/img/temp/roupas.png',
+      category: 'Comida',
+      rating: 4.7,
+      deliveryInfo: 'Entrega estimada: 25-40 min',
+      attributes: [
+        ProductAttribute(
+          title: 'Tamanho',
+          value: 'Grande',
+          icon: Icons.local_pizza_outlined,
+        ),
+        ProductAttribute(
+          title: 'Destaque',
+          value: 'Mais vendida',
+          icon: Icons.local_fire_department_outlined,
+        ),
+      ],
     ),
-    _ProductData(
+    Product(
+      id: 'food-pizza-quatro-queijos',
       name: 'Pizza Quatro Queijos',
       description: 'Mussarela, provolone, parmesao e gorgonzola.',
-      price: 'R\$ 49,90',
-      imagePath: 'assets/img/temp/padaria.png',
+      price: 49.90,
+      oldPrice: 54.90,
+      image: 'assets/img/temp/padaria.png',
+      category: 'Comida',
+      rating: 4.9,
+      deliveryInfo: 'Entrega estimada: 30-45 min',
+      attributes: [
+        ProductAttribute(
+          title: 'Massa',
+          value: 'Pan',
+          icon: Icons.bakery_dining_outlined,
+        ),
+        ProductAttribute(
+          title: 'Queijos',
+          value: '4 tipos',
+          icon: Icons.egg_alt_outlined,
+        ),
+      ],
     ),
   ];
+
+  static String _currency(double value) {
+    final formatted = value.toStringAsFixed(2).replaceAll('.', ',');
+    return 'R\$ $formatted';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,10 +190,13 @@ class StoreProductsScreen extends StatelessWidget {
                 (product) => ProductItemTile(
                   name: product.name,
                   description: product.description,
-                  price: product.price,
-                  imagePath: product.imagePath,
-                  onTap: () =>
-                      Navigator.pushNamed(context, AppRoutes.productDetail),
+                  price: _currency(product.price),
+                  imagePath: product.image,
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    AppRoutes.productDetail,
+                    arguments: product,
+                  ),
                   onAdd: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -175,18 +212,4 @@ class StoreProductsScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class _ProductData {
-  const _ProductData({
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.imagePath,
-  });
-
-  final String name;
-  final String description;
-  final String price;
-  final String imagePath;
 }
