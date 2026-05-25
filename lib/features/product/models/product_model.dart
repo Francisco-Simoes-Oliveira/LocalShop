@@ -116,4 +116,6 @@ class ProductMocks {
       ),
     ],
   );
+
+  static get decorLamp => null;
 }
