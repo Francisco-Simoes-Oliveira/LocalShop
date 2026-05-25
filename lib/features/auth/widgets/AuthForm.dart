@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:shoplocal/core/database/database.dart';
+import 'package:shoplocal/features/auth/dao/userDao.dart';
+import 'package:shoplocal/features/auth/model/user.dart';
 
 class Authform extends StatefulWidget {
   final String? tela;
@@ -11,8 +15,69 @@ class Authform extends StatefulWidget {
 }
 
 class _AuthformState extends State<Authform> {
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController senhaController = TextEditingController();
+
   bool isChecked = false;
   bool obscurePassword = true;
+
+  bool get isRegister => widget.tela == 'register';
+
+  @override
+  void dispose() {
+    nomeController.dispose();
+    emailController.dispose();
+    senhaController.dispose();
+    super.dispose();
+  }
+
+  void _mostrarMensagem(String texto) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(texto)));
+  }
+
+  Future<void> _registrarUsuario() async {
+    final String nome = nomeController.text.trim();
+    final String email = emailController.text.trim();
+    final String senha = senhaController.text;
+
+    if (!isChecked) {
+      _mostrarMensagem('É necessário aceitar os termos para continuar.');
+      return;
+    }
+
+    if (nome.isEmpty || email.isEmpty || senha.isEmpty) {
+      _mostrarMensagem('Preencha nome, email e senha.');
+      return;
+    }
+
+    try {
+      final Database banco = await Conexao.instancia.bancoDados;
+      final UserDao dao = UserDao(banco);
+      final User usuario = User(name: nome, email: email, password: senha);
+
+      await dao.incerir(usuario);
+
+      if (!mounted) return;
+
+      nomeController.clear();
+      emailController.clear();
+      senhaController.clear();
+      setState(() {
+        isChecked = false;
+      });
+
+      _mostrarMensagem('Cadastro realizado com sucesso.');
+    } on ArgumentError catch (erro) {
+      if (!mounted) return;
+
+      _mostrarMensagem(erro.message as String);
+    } catch (erro) {
+      if (!mounted) return;
+
+      _mostrarMensagem('Erro ao salvar usuário.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +145,13 @@ class _AuthformState extends State<Authform> {
                       mainAxisSize: MainAxisSize.min,
                       spacing: 24,
                       children: [
-                        buildField('Nome'),
-                        buildField('Email'),
-                        buildField('Password', obscure: true),
+                        buildField('Nome', controller: nomeController),
+                        buildField('Email', controller: emailController),
+                        buildField(
+                          'Password',
+                          controller: senhaController,
+                          obscure: true,
+                        ),
                         Center(
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -144,7 +213,7 @@ class _AuthformState extends State<Authform> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: isChecked ? _registrarUsuario : null,
                           child: const Text('Registrar'),
                         ),
 
@@ -198,10 +267,15 @@ class _AuthformState extends State<Authform> {
     );
   }
 
-  Widget buildField(String tipo, {bool obscure = false}) {
+  Widget buildField(
+    String tipo, {
+    TextEditingController? controller,
+    bool obscure = false,
+  }) {
     final isPassword = tipo.toLowerCase() == 'password';
 
     return TextField(
+      controller: controller,
       obscureText: isPassword ? obscurePassword : obscure,
       decoration: InputDecoration(
         hintText: tipo,
