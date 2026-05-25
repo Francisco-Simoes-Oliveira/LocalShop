@@ -41,7 +41,7 @@ class Store {
       address: map['address'] as String,
       phone: map['phone'] as String,
       email: map['email'] as String,
-      adminId: map['AdminId'] as int,
+      adminId: map['adminId'] as int,
     );
   }
 
