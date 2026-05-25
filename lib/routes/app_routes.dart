@@ -9,7 +9,7 @@ import 'package:shoplocal/features/home/screens/categoriesScreen.dart';
 import 'package:shoplocal/features/product/models/product_model.dart';
 import 'package:shoplocal/features/home/screens/dashboardScreen.dart';
 import 'package:shoplocal/features/product/screens/productDetailScreen.dart';
-import 'package:shoplocal/features/profile/screens/profile_screen.dart';
+import 'package:shoplocal/features/profile/screens/profileScreen.dart';
 import 'package:shoplocal/features/store/screens/partnerStoresScreen.dart';
 import 'package:shoplocal/features/store/screens/StoreProductsScreen.dart';
 

@@ -63,7 +63,7 @@ class ProductMocks {
     ],
   );
 
-  static const Product decorLamp = Product(
+  static const Product Luminaria = Product(
     id: 'decor-lamp-arc-modern',
     name: 'Luminaria Arco Moderna',
     description:
